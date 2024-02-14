@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tu Página de San Valentín</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    h1 {
+      color: #d9534f;
+    }
+
+    p {
+      color: #333;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-top: 20px;
+    }
+
+    button {
+      background-color: #5bc0de;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+
+    /* Estilos de la ventana modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
+
+    .modal-content {
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .modal-close {
+      font-size: 24px;
+      color: #d9534f;
+      cursor: pointer;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+
+    /* Estilos para mensajes emergentes */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      z-index: 2;
+    }
+
+    .popup-content {
+      font-size: 18px;
+      color: #d9534f;
+    }
+
+    .popup-button {
+      background-color: #5bc0de;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 14px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>¡Feliz Día de San Valentín!</h1>
+    <p>¡Bienvenido a nuestra página especial para celebrar el amor!</p>
+    <!-- Reemplaza la URL actual con la nueva URL de la imagen -->
+    <img src="https://static.vecteezy.com/system/resources/previews/001/994/693/original/cute-valentine-cat-couple-with-heart-love-happy-valentine-s-day-cute-cat-cartoon-outline-pink-heart-for-banner-printable-stuff-greeting-card-vector.jpg"
+      alt="Imagen de San Valentín">
+
+    <button id="presionaAquiBtn" onclick="iniciarSecuencia()">Presiona aquí</button>
+
+    <!-- Ventana modal -->
+    <div id="myModal" class="modal">
+      <span class="modal-close" onclick="cerrarModal">&times;</span>
+      <div class="modal-content">
+        <p>
+          Cuando te vi, agradezco al mundo de haberte conocido y haberme mostrado una primavera tan brillante como la tuya, mi amor bello. Sabes, no solo quiero una vida contigo, quiero tener todo contigo, hasta que la muerte nos separe. Estoy tan agradecido y rendido a ti, mi vida, que no querría darte, que no querría mostrarte, y sobre todo, yo a ti rendirme y entregarme. Porque yo me he realmente enamorado. Te daré mi futuro, también mi corazón y todo mi ser. Estaremos juntos para siempre, de verdad. Te amo, Rena, ¿partimos juntos? ❤️
+        </p>
+      </div>
+    </div>
+
+    <!-- Mensajes emergentes -->
+    <div id="popupTeAmo" class="popup">
+      <div class="popup-content">
+        ¡Te amo! 💖
+      </div>
+    </div>
+
+    <div id="popupDemasiado" class="popup">
+      <div class="popup-content">
+        ¡Demasiado! 💕
+      </div>
+    </div>
+
+    <div id="popupValesMucho" class="popup">
+      <div class="popup-content">
+        ¡Vales mucho! 💗
+      </div>
+    </div>
+
+    <div id="popupEresMiTodo" class="popup">
+      <div class="popup-content">
+        ¡Eres mi todo! 😍
+      </div>
+    </div>
+
+    <div id="popupQuieroUnaVidaContigo" class="popup">
+      <div class="popup-content">
+        ¡Quiero una vida contigo! 💑
+      </div>
+    </div>
+
+    <div id="popupMensajeFinal" class="popup">
+      <span class="modal-close" onclick="cerrarPopup('popupMensajeFinal')">&hearts;</span>
+      <div class="popup-content">
+        Cuando te vi, agradezco al mundo de haberte conocido y haberme mostrado una primavera tan brillante como la tuya, mi amor bello. Sabes, no solo quiero una vida contigo, quiero tener todo contigo, hasta que la muerte nos separe. Estoy tan agradecido y rendido a ti, mi vida, que no querría darte, que no querría mostrarte, y sobre todo, yo a ti rendirme y entregarme. Porque yo me he realmente enamorado. Te daré mi futuro, también mi corazón y todo mi ser. Estaremos juntos para siempre, de verdad. ¿Quieres permanecer conmigo? ❤️
+        <br><br>
+        <a href="https://www.youtube.com/watch?v=VF-r5TtlT9w&pp=ygULXCBBZG9yZSBZb3U%3D" class="popup-button" target="_blank">Continuar</a>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    var botonPresionado = false;
+
+    function iniciarSecuencia() {
+      if (botonPresionado) {
+        alert("¡Ya has presionado el botón! Espera a que se complete la secuencia.");
+        return;
+      }
+
+      botonPresionado = true;
+
+      mostrarPopup('popupTeAmo');
+      setTimeout(function () {
+        cerrarPopup('popupTeAmo');
+        mostrarPopup('popupDemasiado');
+      }, 3000); // 3000 milisegundos = 3 segundos
+
+      setTimeout(function () {
+        cerrarPopup('popupDemasiado');
+        mostrarPopup('popupValesMucho');
+      }, 6000); // 6000 milisegundos = 6 segundos
+
+      setTimeout(function () {
+        cerrarPopup('popupValesMucho');
+        mostrarPopup('popupEresMiTodo');
+      }, 9000); // 9000 milisegundos = 9 segundos
+
+      setTimeout(function () {
+        cerrarPopup('popupEresMiTodo');
+        mostrarPopup('popupQuieroUnaVidaContigo');
+      }, 12000); // 12000 milisegundos = 12 segundos
+
+      setTimeout(function () {
+        cerrarPopup('popupQuieroUnaVidaContigo');
+        mostrarPopup('popupMensajeFinal');
+        botonPresionado = false; // Permitir clics nuevamente
+      }, 15000); // 15000 milisegundos = 15 segundos
+    }
+
+    function mostrarPopup(idPopup) {
+      var popup = document.getElementById(idPopup);
+      popup.style.display = 'block';
+    }
+
+    function cerrarPopup(idPopup) {
+      var popup = document.getElementById(idPopup);
+      popup.style.display = 'none';
+    }
+
+    function cerrarModal() {
+      var modal = document.getElementById('myModal');
+      modal.style.display = 'none';
+    }
+  </script>
+
+</body>
+
+</html>
